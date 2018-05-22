@@ -1,16 +1,28 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register all of the routes for an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+  use App\Task;
+  use Illuminate\Http\Request;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+  /**
+   * Вывести панель с задачами
+   */
+  Route::get('/', function () {
+      return view('tasks');
+  });
+
+  /**
+   * Добавить новую задачу
+   */
+  Route::post('/task', function (Request $request) {
+      $task=new Task();
+      $task->name=$request->name;
+      $task->save();
+      exit('save');
+  });
+
+  /**
+   * Удалить задачу
+   */
+  Route::delete('/task/{task}', function (Task $task) {
+    //
+  });
