@@ -10,7 +10,8 @@
   <body>
     <div class="container">
       <nav class="navbar navbar-default">
-	  <a href="{{url('/')}}">Home</a>
+	  <a href="{{url('/')}}">Tasks</a>
+	  <a href="{{url('/news')}}">News</a>
       </nav>
     </div>
     @yield('content')

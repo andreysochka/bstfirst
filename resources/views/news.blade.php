@@ -4,33 +4,33 @@
 <div class="panel-body">
     <!-- Отображение ошибок проверки ввода -->
     @include('common.errors')
-    <!-- Форма новой задачи -->
-    <form action="{{ url('task') }}" method="POST" class="form-horizontal">
+<!--    <-- Форма новой задачи -->
+    <form action="{{ url('news') }}" method="POST" class="form-horizontal">
 	{{ csrf_field() }}
-	<!-- Имя задачи -->
+	 
 	<div class="form-group">
-	    <label for="task" class="col-sm-3 control-label">Задача</label>
+	    <label for="news" class="col-sm-3 control-label">Новость</label>
 
 	    <div class="col-sm-6">
-		<input type="text" name="name" id="task-name" class="form-control">
+		<input type="text" name="description" id="news-description" class="form-control">
 	    </div>
 	</div>
 
-	<!-- Кнопка добавления задачи -->
+<!--	 Кнопка добавления задачи -->
 	<div class="form-group">
 	    <div class="col-sm-offset-3 col-sm-6">
 		<button type="submit" class="btn btn-default">
-		    <i class="fa fa-plus"></i> Добавить задачу
+		    <i class="fa fa-plus"></i> Добавить новость
 		</button>
 	    </div>
 	</div>
     </form>
 </div>
 
-@if (count($tasks) > 0)
+@if (count($news) > 0)
 <div class="panel panel-default">
     <div class="panel-heading">
-        Cписок задач
+        Cписок новостей
     </div>
 
     <div class="panel-body">
@@ -38,27 +38,27 @@
 
 	    <!-- Заголовок таблицы -->
 	    <thead>
-            <th>Tasks</th>
+            <th>News</th>
             <th colspan="2">action</th>
 	    </thead>
 
 	    <!-- Тело таблицы -->
 	    <tbody>
-		@foreach ($tasks as $task)
+		@foreach ($news as $new)
 		<tr>
-		    <!-- Имя задачи -->
+		    <!-- Имя новости -->
 		    <td class="table-text">
-			<div>{{ $task->name }}</div>
+			<div>{{ $new->description }}</div>
 		    </td>
 
 		    <td>
-			<form action="/task/{{$task->id}}" method="post">
+			<form action="/news/{{$news->id}}" method="post">
 			    {{method_field('DELETE')}}
 			    {{ csrf_field() }}
 			    <button type="submit" class="btn btn-default">
 				<i class="fa fa-trash"></i>
 			    </button>
-			    <a href="/tasks/edit/{{$task->id}}" class="btn btn-default"><i class="fa fa-edit"></i></a>
+			    <a href="/news/edit/{{$news->id}}" class="btn btn-default"><i class="fa fa-edit"></i></a>
 			</form>
 		    </td>
 		</tr>

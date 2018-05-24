@@ -1,6 +1,7 @@
 <?php
 
 use App\Task;
+use App\News;
 use Illuminate\Http\Request;
 
 /**
@@ -64,4 +65,33 @@ $validator = Validator::make($request->all(), [
   
 }
     );
-    
+/**
+ * отобразить все новости
+ */
+Route::get('/news', function(){
+    $news = News::all();
+    return view('/news',[
+	'news'=>$news
+    ]);
+});
+
+/**
+ * сохранить новость
+ */
+
+Route::post('/news', function (Request $request) {
+    //проверка данных
+    $validator = Validator::make($request->all(), [
+		'name' => 'required|min:5|max:255',
+    ]);
+
+    if ($validator->fails()) {
+	return redirect('/')
+			->withInput()
+			->withErrors($validator);
+    }
+      $news=new News();
+      $news->name=$request->name;
+      $news->save();
+      return redirect('/news');
+});
