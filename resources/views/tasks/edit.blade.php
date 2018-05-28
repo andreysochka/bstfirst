@@ -5,14 +5,14 @@
     <!-- Отображение ошибок проверки ввода -->
     @include('common.errors')
     <!-- Форма новой задачи -->
-    <form action="{{ url('/tasks/edit/'.$task->id) }}" method="POST" class="form-horizontal">
+    <form action="{{ url('/tasks/'.$task->id.'edit') }}" method="POST" class="form-horizontal">
 	{{ csrf_field() }}
+        {{method_field('PUT')}}
 	<!-- Имя задачи -->
 	<div class="form-group">
-	    <label for="task" class="col-sm-3 control-label">Задача</label>
-	    {{method_field('PUT')}}
+            <label for="task" class="col-sm-3 control-label">Задача</label>
 	    <div class="col-sm-6">
-		<input type="text" name="name" id="task-name" class="form-control" value="{{$task->name}}">
+		<input type="text" name="name" id="task" class="form-control" value="{{$task->name}}">
 	    </div>
 	</div>
 
@@ -20,7 +20,7 @@
 	<div class="form-group">
 	    <div class="col-sm-offset-3 col-sm-6">
 		<button type="submit" class="btn btn-default">
-		    <i class="fa fa-save"></i> Добавить задачу
+		    <i class="fa fa-save"></i> Изменить задачу
 		</button>
 	    </div>
 	</div>

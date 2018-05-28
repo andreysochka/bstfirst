@@ -58,7 +58,8 @@
 			    <button type="submit" class="btn btn-default">
 				<i class="fa fa-trash"></i>
 			    </button>
-			    <a href="/tasks/edit/{{$task->id}}" class="btn btn-default"><i class="fa fa-edit"></i></a>
+                            
+			    <a href="{{ url('tasks/'.$task->id.'/edit') }}" class="btn btn-default"><i class="fa fa-edit"></i></a>
 			</form>
 		    </td>
 		</tr>

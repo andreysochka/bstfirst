@@ -43,10 +43,11 @@ Route::delete('/task/{task}', function (Task $task) {
     $task->delete();
     return redirect('/');
 });
-
-Route::get('/tasks/edit/{task}', function (Task $task){
+/**
+ * отображение шаблона изменения задачи
+ */
+Route::get('/tasks/{task}/edit', function (Task $task){
 return view('tasks.edit',['task'=>$task]);
-  
 }
     );
 Route::put('/tasks/edit/{task}', function (Task $task, Request $request){
