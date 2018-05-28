@@ -79,22 +79,54 @@ Route::get('/news', function(){
 });
 
 /**
- * сохранить новость
+ * добавить новость
  */
 
 Route::post('/news', function (Request $request) {
     //проверка данных
     $validator = Validator::make($request->all(), [
-		'name' => 'required|min:5|max:255',
+		'description' => 'required|min:5|max:255'
     ]);
 
     if ($validator->fails()) {
-	return redirect('/')
+	return redirect('/news')
 			->withInput()
 			->withErrors($validator);
     }
       $news=new News();
-      $news->name=$request->name;
+      $news->description=$request->description;
       $news->save();
       return redirect('/news');
 });
+/**
+ * Удалить новость
+ */
+Route::delete('/news/{new}', function (News $new) {
+    $new->delete();
+    return redirect('/news');
+});
+/**
+ * отображение шаблона изменения задачи
+ */
+Route::get('/news/{new}/edit', function (News $new){
+return view('news.edit',['new'=>$new]);
+}
+    );
+/**
+ * сохранение изменений , запись в базу данніх
+ */    
+Route::put('/news/{new}/edit', function (News $new, Request $req){
+$validator = Validator::make($req->all(), [
+		'description' => 'required|min:5|max:255',
+    ]);
+
+    if ($validator->fails()) {
+	return redirect('/news/edit/'.$new->id)
+			->withInput()
+			->withErrors($validator);
+    }
+      $new->description=$req->description;
+      $new->save();
+      return redirect('/news');
+}
+    );
