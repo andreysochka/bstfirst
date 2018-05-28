@@ -5,7 +5,7 @@
     <!-- Отображение ошибок проверки ввода -->
     @include('common.errors')
     <!-- Форма новой задачи -->
-    <form action="{{ url('/tasks/'.$task->id.'edit') }}" method="POST" class="form-horizontal">
+    <form action="{{ url('/tasks/'.$task->id.'/edit') }}" method="POST" class="form-horizontal">
 	{{ csrf_field() }}
         {{method_field('PUT')}}
 	<!-- Имя задачи -->

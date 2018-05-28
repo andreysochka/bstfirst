@@ -50,7 +50,10 @@ Route::get('/tasks/{task}/edit', function (Task $task){
 return view('tasks.edit',['task'=>$task]);
 }
     );
-Route::put('/tasks/edit/{task}', function (Task $task, Request $request){
+/**
+ * сохранение изменений , запись в базу данніх
+ */    
+Route::put('/tasks/{task}/edit', function (Task $task, Request $request){
 $validator = Validator::make($request->all(), [
 		'name' => 'required|min:5|max:255',
     ]);
@@ -63,7 +66,6 @@ $validator = Validator::make($request->all(), [
       $task->name=$request->name;
       $task->save();
       return redirect('/');
-  
 }
     );
 /**
