@@ -12,7 +12,7 @@
 	    <label for="task" class="col-sm-3 control-label">Задача</label>
 
 	    <div class="col-sm-6">
-		<input type="text" name="name" id="task-name" class="form-control">
+                <input type="text" name="name" id="task" class="form-control">
 	    </div>
 	</div>
 
@@ -20,7 +20,7 @@
 	<div class="form-group">
 	    <div class="col-sm-offset-3 col-sm-6">
 		<button type="submit" class="btn btn-default">
-		    <i class="fa fa-plus"></i> Добавить задачу
+		    <i class="fa fa-plus">Добавить задачу</i> 
 		</button>
 	    </div>
 	</div>
@@ -52,7 +52,7 @@
 		    </td>
 
 		    <td>
-			<form action="/task/{{$task->id}}" method="post">
+			<form action="{{ url('task/'.$task->id) }}" method="post">
 			    {{method_field('DELETE')}}
 			    {{ csrf_field() }}
 			    <button type="submit" class="btn btn-default">

@@ -5,7 +5,7 @@ use App\News;
 use Illuminate\Http\Request;
 
 /**
- * 
+ * отображение всех задач
  */
 Route::get('/', function () {
     //
